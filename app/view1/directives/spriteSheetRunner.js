@@ -17,7 +17,21 @@ angular.module('myApp.directives', [])
                     scope.stage.autoClear = true;
                     scope.stage.removeAllChildren();
                     scope.stage.update();
+                } else {
+                    scope.stage = new createjs.stage(element[0]);
                 }
+                w = scope.stage.canvas.width;
+                h = scope.stage.canvas.height;
+                manifest = [
+                    {src: "spritesheet_grant.png", id = "grant"},
+                    {src: "sky.png", id = "sky"},
+                    {src: "ground.png", id = "ground"},
+                    {src: "hill1.png", id = "hill"},
+                    {src: "hill2.png" id = "hill2"}
+                ];
+                loader = new createjs.LoadQueue(false);
+                loader.addEventListener("complete", handleComplete);
+                loader.loadManifest(manifest, true, "/app/assets/");
             }
         }
     }
